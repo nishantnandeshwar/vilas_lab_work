@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Page</title>
+    <link rel="stylesheet" href="style_page1.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="d-flex">
+        <ul style="margin-bottom: 0px; padding-left: 1px;">
+            <li><a href="index.html" style="text-decoration: none; color: #ffff;">Home</a></li>
+            <li><a href="page1.html" style="text-decoration: none; color: #ffff;">Page 1</a></li>
+            <li><a href="page2.html" style="text-decoration: none; color: #ffff;">Page 2</a></li>
+            <li><a href="print.html" style="text-decoration: none; color: #ffff;">Print</a></li>
+        </ul>
+    </nav>
+    <div>
+        <div class="input-group mb-3 row">
+            <span class="input-group-text border-0" id="patient_name">PATIENT NAME</span>
+            <input type="text" class="form-control rounded" id="patient_name" aria-describedby="patient_name" />
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text border-0" id="basic-addon3">AGE/GENDER</span>
+            <input type="text" class="form-control rounded" id="basic-url3" aria-describedby="basic-addon3" />
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text border-0" id="basic-addon3">REFFERRENCE BY</span>
+            <input type="text" class="form-control rounded" id="basic-url3" aria-describedby="basic-addon3" />
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text border-0" id="basic-addon3">DATE</span>
+            <input type="text" class="form-control rounded" id="basic-url3" aria-describedby="basic-addon3" />
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text border-0" id="basic-addon3">LAB NO</span>
+            <input type="text" class="form-control rounded" id="basic-url3" aria-describedby="basic-addon3" />
+        </div>
+    </div>
+    <div id="bodyID">
+        <h1>This is a page1</h1>
+        <p>This is the page1.</p>
+    </div>
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>PARAMETERS</th>
+                <th>OBSERVED VALUE</th>
+                <th>REFFERRENCE RANGE</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="script_page1.js"></script>
+</body>
+
+</html>
