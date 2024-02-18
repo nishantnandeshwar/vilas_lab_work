@@ -97,6 +97,9 @@ function renderData(data) {
     headerRowAdditional.appendChild(valueHeaderAdditional);
     additionalTable.appendChild(headerRowAdditional);
 
+    const deleteRow = document.createElement('th');
+    deleteRow.textContent = 'Delete Row';
+    headerRowAdditional.appendChild(deleteRow);
     // Append the additional table to the container
     document.getElementById('additional-rows').appendChild(additionalTable);
 }
@@ -130,6 +133,17 @@ function addRow() {
             valueCell.textContent = value;
             newRow.appendChild(valueCell);
 
+            // Create a delete button for the row
+            const deleteButtonCell = document.createElement('td');
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'X';
+
+            deleteButton.addEventListener('click', function() {
+                newRow.parentNode.removeChild(newRow); // Remove the clicked row
+            });
+            deleteButtonCell.appendChild(deleteButton);
+            newRow.appendChild(deleteButtonCell);
+
             // Append the new row to the additional table
             document.getElementById('additional-rows-table').appendChild(newRow);
             // Clear the input box in the main table
@@ -137,3 +151,21 @@ function addRow() {
         }
     }
 }
+
+function getTableWithoutDeleteColumn() {
+    // Clone the additional rows table
+    const tableClone = document.getElementById('additional-rows-table').cloneNode(true);
+    
+    // Loop through each row of the clone and remove the last cell (Delete Row column)
+    const rows = tableClone.getElementsByTagName('tr');
+    for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        if (cells.length > 0) {
+            rows[i].removeChild(cells[cells.length - 1]);
+        }
+    }
+    console.log("tableClone>>",tableClone)
+    return tableClone;
+}
+
+document.getElementById('review-details-final').addEventListener('click', getTableWithoutDeleteColumn);
