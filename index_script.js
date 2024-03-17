@@ -41,11 +41,66 @@ function generatePDF() {
                 </html>
             `;
     console.log(template)
-    // html2pdf().from(template).save();
+    html2pdf().from(template).save();
 }
 document.getElementById('download-button').addEventListener('click', generatePDF);
 // ******************************************************************************
 
+function addRow() {
+    const mainTable = document.getElementById('bio-chemistry-main-table');
+    const rows = mainTable.getElementsByTagName('tr');
+    // Loop through each row and check if the input box is not empty
+    for (let i = 1; i < rows.length; i++) {
+        const input = rows[i].getElementsByTagName('input')[0];
+        if (input.value.trim() !== '') {
+            // If input box is not empty, get the title, range, and entered value
+            const title = rows[i].getElementsByTagName('td')[0].textContent;
+            const range = rows[i].getElementsByTagName('td')[1].textContent;
+            const value = input.value.trim();
+
+            // Create a new row for additional table with the title, range, and entered value
+            const newRow = document.createElement('tr');
+            const titleCell = document.createElement('td');
+            titleCell.textContent = title;
+            titleCell.style.border = '1px solid #dddddd'; // Add border CSS property
+            titleCell.style.textAlign = 'left'; // Align text to left
+            titleCell.style.padding = '8px'; // Add padding
+            newRow.appendChild(titleCell);
+
+            const rangeCell = document.createElement('td');
+            rangeCell.textContent = range;
+            rangeCell.style.border = '1px solid #dddddd'; // Add border CSS property
+            rangeCell.style.textAlign = 'left'; // Align text to left
+            rangeCell.style.padding = '8px'; // Add padding
+            newRow.appendChild(rangeCell);
+
+            const valueCell = document.createElement('td');
+            valueCell.textContent = value;
+            valueCell.style.border = '1px solid #dddddd'; // Add border CSS property
+            valueCell.style.textAlign = 'left'; // Align text to left
+            valueCell.style.padding = '8px'; // Add padding
+            newRow.appendChild(valueCell);
+
+            // Create a delete button for the row
+            const deleteButtonCell = document.createElement('td');
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'X';
+
+            deleteButton.addEventListener('click', function () {
+                newRow.parentNode.removeChild(newRow); // Remove the clicked row
+            });
+            deleteButtonCell.appendChild(deleteButton);
+            newRow.appendChild(deleteButtonCell);
+            console.log("newRow>>",newRow)
+            // Append the new row to the additional table
+            document.getElementById('additional-rows-table').appendChild(newRow);
+            // Clear the input box in the main table
+            input.value = '';
+        }
+    }
+}
+// document.getElementById('review-details-btn').addEventListener('click', addRow);
+document.getElementById('here').addEventListener('click', addRow);
 
 function renderData(data, data1) {
     const container = document.getElementById('bio-chemistry-data');
@@ -245,59 +300,3 @@ function renderData(data, data1) {
 renderData(data_bio_chemistry,data_test)
 
 
-
-// document.getElementById('review-details').addEventListener('click', addRow);
-// function addRow() {
-//     const mainTable = document.getElementById('bio-chemistry-main-table');
-//     const rows = mainTable.getElementsByTagName('tr');
-
-//     // Loop through each row and check if the input box is not empty
-//     for (let i = 1; i < rows.length; i++) {
-//         const input = rows[i].getElementsByTagName('input')[0];
-//         if (input.value.trim() !== '') {
-//             // If input box is not empty, get the title, range, and entered value
-//             const title = rows[i].getElementsByTagName('td')[0].textContent;
-//             const range = rows[i].getElementsByTagName('td')[1].textContent;
-//             const value = input.value.trim();
-
-//             // Create a new row for additional table with the title, range, and entered value
-//             const newRow = document.createElement('tr');
-//             const titleCell = document.createElement('td');
-//             titleCell.textContent = title;
-//             titleCell.style.border = '1px solid #dddddd'; // Add border CSS property
-//             titleCell.style.textAlign = 'left'; // Align text to left
-//             titleCell.style.padding = '8px'; // Add padding
-//             newRow.appendChild(titleCell);
-
-//             const rangeCell = document.createElement('td');
-//             rangeCell.textContent = range;
-//             rangeCell.style.border = '1px solid #dddddd'; // Add border CSS property
-//             rangeCell.style.textAlign = 'left'; // Align text to left
-//             rangeCell.style.padding = '8px'; // Add padding
-//             newRow.appendChild(rangeCell);
-
-//             const valueCell = document.createElement('td');
-//             valueCell.textContent = value;
-//             valueCell.style.border = '1px solid #dddddd'; // Add border CSS property
-//             valueCell.style.textAlign = 'left'; // Align text to left
-//             valueCell.style.padding = '8px'; // Add padding
-//             newRow.appendChild(valueCell);
-
-//             // Create a delete button for the row
-//             const deleteButtonCell = document.createElement('td');
-//             const deleteButton = document.createElement('button');
-//             deleteButton.textContent = 'X';
-
-//             deleteButton.addEventListener('click', function () {
-//                 newRow.parentNode.removeChild(newRow); // Remove the clicked row
-//             });
-//             deleteButtonCell.appendChild(deleteButton);
-//             newRow.appendChild(deleteButtonCell);
-
-//             // Append the new row to the additional table
-//             document.getElementById('additional-rows-table').appendChild(newRow);
-//             // Clear the input box in the main table
-//             input.value = '';
-//         }
-//     }
-// }
